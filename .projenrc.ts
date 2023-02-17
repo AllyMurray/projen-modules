@@ -1,16 +1,22 @@
-import { cdk, javascript } from 'projen';
+import { cdk } from 'projen';
+import { NpmAccess } from 'projen/lib/javascript';
+import { Prettier } from './src/config/prettier';
+import { Projen } from './src/config/projen';
+
+const projenDependency = 'projen@0.67.48';
+
 const project = new cdk.JsiiProject({
+  name: 'projen-modules',
+  description: 'External modules for the Projen project generator',
   author: 'Ally Murray',
   authorAddress: 'allymurray88@gmail.com',
-  defaultReleaseBranch: 'main',
-  name: 'projen-modules',
-  packageManager: javascript.NodePackageManager.NPM,
-  projenrcTs: true,
+  packageName: '@ally-murray/projen-modules',
   repositoryUrl: 'git@github.com:AllyMurray/projen-modules.git',
-
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  ...Prettier.defaultOptions,
+  ...Projen.defaultOptions,
+  devDeps: [projenDependency],
+  peerDeps: [projenDependency],
+  npmAccess: NpmAccess.PUBLIC,
 });
+
 project.synth();
