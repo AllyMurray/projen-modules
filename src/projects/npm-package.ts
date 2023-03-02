@@ -25,8 +25,6 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
     new NpmBuild(this);
 
     this.package.addField('type', 'module');
-
-    this.preCompileTask.exec('NODE_OPTIONS="--loader ts-node/esm"');
   }
 
   postSynthesize(): void {
