@@ -1,4 +1,3 @@
-import * as path from 'path';
 import { SourceCode } from 'projen';
 import { TypeScriptProject } from 'projen/lib/typescript';
 import { TypescriptExtendConfig } from './typescript-extend-config';
@@ -35,19 +34,18 @@ export class NpmBuild {
       // Add a compile task for both CommonJS and ES Modules
       const buildDetails = [
         {
-          moduleType: 'cjs',
-          packageJsonType: 'commonjs',
-        },
-        {
           moduleType: 'esm',
           packageJsonType: 'module',
         },
+        {
+          moduleType: 'cjs',
+          packageJsonType: 'commonjs',
+        },
       ];
       for (const { moduleType, packageJsonType } of buildDetails) {
-        const packageJsonOutDir = path.join(project.outdir, 'lib', moduleType);
         compileTask.exec(`tsc --project tsconfig.build.${moduleType}.json`);
         compileTask.exec(
-          `ts-node ./scripts/create-package-json.ts --outDir="${packageJsonOutDir}" --type=${packageJsonType}`
+          `ts-node ./scripts/create-package-json.ts --moduleType="${moduleType}" --packageJsonType=${packageJsonType}`
         );
       }
     }
@@ -106,10 +104,10 @@ export class NpmBuild {
 
     source.open('program');
     source.line(
-      `.option('--outDir <string>', 'The directory the file will be written to')`
+      `.option('--moduleType <string>', 'The module type, cjs or esm')`
     );
     source.open(`.option(`);
-    source.line(`'--type <string>',`);
+    source.line(`'--packageJsonType <string>',`);
     source.line(`'The package.json type, either commonjs or module'`);
     source.close(');');
     source.close('');
@@ -120,11 +118,11 @@ export class NpmBuild {
     source.line('const options = program.opts();');
     source.line('');
 
-    source.line('const type = options.type;');
+    source.line('const type = options.packageJsonType;');
     source.line('');
 
     source.open('fs.writeFileSync(');
-    source.line(`path.join(options.outDir, 'package.json'),`);
+    source.line(`path.resolve('lib', options.moduleType, 'package.json'),`);
     source.open(`JSON.stringify(`);
     source.open('{');
     source.line('type,');
