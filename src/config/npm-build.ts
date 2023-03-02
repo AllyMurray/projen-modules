@@ -5,19 +5,22 @@ import { TypescriptExtendConfig } from './typescript-extend-config';
 
 export class NpmBuild {
   static defaultOptions = {
-    entrypoint: 'lib/commonjs/index.js',
-    entrypointTypes: 'lib/commonjs/index.d.ts',
+    entrypoint: 'lib/cjs/index.js',
+    entrypointTypes: 'lib/types/index.d.ts',
   };
 
   constructor(project: TypeScriptProject) {
     this.generateCreatePackageJsonScript(project);
     project.addDevDeps('commander');
-    project.package.addField('module', 'lib/module/index.js');
+    project.package.addField('module', 'lib/esm/index.js');
     project.package.addField('exports', {
       '.': {
-        types: './lib/module/index.d.ts',
-        import: './lib/module/index.js',
-        require: './lib/commonjs/index.js',
+        // Entrypoint for ES Modules
+        import: './lib/esm/index.js',
+        // Entrypoint for CommonJS
+        require: './lib/cjs/index.js',
+        // TS Definitions
+        types: './lib/types/index.d.ts',
       },
     });
 
@@ -26,23 +29,30 @@ export class NpmBuild {
       // Remove the default compile task
       compileTask.reset();
 
+      // Add a compile task to generate the TS Typings
+      compileTask.exec(`tsc --project tsconfig.build.types.json`);
+
       // Add a compile task for both CommonJS and ES Modules
-      const libDirectory = path.join(project.outdir, 'lib');
-      for (const type of ['commonjs', 'module']) {
-        compileTask.exec(`tsc --project tsconfig.build.${type}.json`);
+      const buildDetails = [
+        {
+          moduleType: 'cjs',
+          packageJsonType: 'commonjs',
+        },
+        {
+          moduleType: 'esm',
+          packageJsonType: 'module',
+        },
+      ];
+      for (const { moduleType, packageJsonType } of buildDetails) {
+        const packageJsonOutDir = path.join(project.outdir, 'lib', moduleType);
+        compileTask.exec(`tsc --project tsconfig.build.${moduleType}.json`);
         compileTask.exec(
-          `ts-node ./scripts/create-package-json.ts --outDir="${libDirectory}" --type=${type}`
+          `ts-node ./scripts/create-package-json.ts --outDir="${packageJsonOutDir}" --type=${packageJsonType}`
         );
       }
     }
 
-    // ".projenrc.js",
-    // "src/**/*.ts",
-    // "test/**/*.ts",
-    // ".projenrc.ts",
-    // "projenrc/**/*.ts"
-
-    const excludeTestFiles = [
+    const excludedBuildFiles = [
       '.projenrc.ts',
       'test',
       'src/**/*.spec.ts',
@@ -51,20 +61,31 @@ export class NpmBuild {
 
     // Create a TS Config for an ES Module build
     new TypescriptExtendConfig(project, {
-      fileName: 'tsconfig.build.module.json',
-      compilerOptions: { outDir: 'lib/module' },
-      exclude: excludeTestFiles,
+      fileName: 'tsconfig.build.esm.json',
+      compilerOptions: { outDir: 'lib/esm' },
+      exclude: excludedBuildFiles,
     });
 
     // Create a TS Config for a CommonJS build
     new TypescriptExtendConfig(project, {
-      fileName: 'tsconfig.build.commonjs.json',
+      fileName: 'tsconfig.build.cjs.json',
       compilerOptions: {
-        outDir: 'lib/commonjs',
+        outDir: 'lib/cjs',
         module: 'commonjs',
         target: 'es2015',
       },
-      exclude: excludeTestFiles,
+      exclude: excludedBuildFiles,
+    });
+
+    // Create a TS Config for generating Typings
+    new TypescriptExtendConfig(project, {
+      fileName: 'tsconfig.build.types.json',
+      compilerOptions: {
+        outDir: 'lib/types',
+        declaration: true,
+        emitDeclarationOnly: true,
+      },
+      exclude: excludedBuildFiles,
     });
   }
 
@@ -75,7 +96,7 @@ export class NpmBuild {
     const source = new SourceCode(project, scriptPath);
     source.line(`// ${source.marker}`);
     source.line('/**');
-    source.line(' * Crates a package.json for the given build type');
+    source.line(' * Creates a package.json for the given build type');
     source.line(' */');
 
     source.line(`import fs from 'fs';`);
@@ -103,7 +124,7 @@ export class NpmBuild {
     source.line('');
 
     source.open('fs.writeFileSync(');
-    source.line(`path.join(options.outDir, type, 'package.json'),`);
+    source.line(`path.join(options.outDir, 'package.json'),`);
     source.open(`JSON.stringify(`);
     source.open('{');
     source.line('type,');
