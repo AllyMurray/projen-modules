@@ -20,6 +20,7 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
       ...Prettier.defaultOptions,
       ...Projen.defaultOptions,
       tsconfig: TsConfig.defaultOptions,
+      releaseToNpm: true,
       ...options,
     });
     new NpmBuild(this);
