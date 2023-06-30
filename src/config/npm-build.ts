@@ -1,6 +1,9 @@
 import { SourceCode } from 'projen';
+import {
+  TypescriptConfig,
+  TypescriptConfigExtends,
+} from 'projen/lib/javascript';
 import { TypeScriptProject } from 'projen/lib/typescript';
-import { TypescriptExtendConfig } from './typescript-extend-config';
 
 export class NpmBuild {
   static defaultOptions = {
@@ -57,15 +60,18 @@ export class NpmBuild {
       'src/**/*.test.ts',
     ];
 
+    const tsExtends = TypescriptConfigExtends.fromPaths(['tsconfig.json']);
+
     // Create a TS Config for an ES Module build
-    new TypescriptExtendConfig(project, {
+    new TypescriptConfig(project, {
       fileName: 'tsconfig.build.esm.json',
       compilerOptions: { outDir: 'lib/esm' },
       exclude: excludedBuildFiles,
+      extends: tsExtends,
     });
 
     // Create a TS Config for a CommonJS build
-    new TypescriptExtendConfig(project, {
+    new TypescriptConfig(project, {
       fileName: 'tsconfig.build.cjs.json',
       compilerOptions: {
         outDir: 'lib/cjs',
@@ -73,10 +79,11 @@ export class NpmBuild {
         target: 'es2015',
       },
       exclude: excludedBuildFiles,
+      extends: tsExtends,
     });
 
     // Create a TS Config for generating Typings
-    new TypescriptExtendConfig(project, {
+    new TypescriptConfig(project, {
       fileName: 'tsconfig.build.types.json',
       compilerOptions: {
         outDir: 'lib/types',
@@ -84,6 +91,7 @@ export class NpmBuild {
         emitDeclarationOnly: true,
       },
       exclude: excludedBuildFiles,
+      extends: tsExtends,
     });
   }
 
