@@ -22,7 +22,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: "7"
+          version: "8"
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
       - name: build
@@ -103,7 +103,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: "7"
+          version: "8"
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
