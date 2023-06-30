@@ -53,6 +53,8 @@ export class NpmBuild {
       }
     }
 
+    const tsExtends = TypescriptConfigExtends.fromPaths(['./tsconfig.json']);
+    const includeSrcFiles = ['src/**/*.ts'];
     const excludedBuildFiles = [
       '.projenrc.ts',
       'test',
@@ -60,14 +62,13 @@ export class NpmBuild {
       'src/**/*.test.ts',
     ];
 
-    const tsExtends = TypescriptConfigExtends.fromPaths(['tsconfig.json']);
-
     // Create a TS Config for an ES Module build
     new TypescriptConfig(project, {
       fileName: 'tsconfig.build.esm.json',
       compilerOptions: { outDir: 'lib/esm' },
-      exclude: excludedBuildFiles,
       extends: tsExtends,
+      include: includeSrcFiles,
+      exclude: excludedBuildFiles,
     });
 
     // Create a TS Config for a CommonJS build
@@ -78,8 +79,9 @@ export class NpmBuild {
         module: 'commonjs',
         target: 'es2015',
       },
-      exclude: excludedBuildFiles,
       extends: tsExtends,
+      include: includeSrcFiles,
+      exclude: excludedBuildFiles,
     });
 
     // Create a TS Config for generating Typings
@@ -90,8 +92,9 @@ export class NpmBuild {
         declaration: true,
         emitDeclarationOnly: true,
       },
-      exclude: excludedBuildFiles,
       extends: tsExtends,
+      include: includeSrcFiles,
+      exclude: excludedBuildFiles,
     });
   }
 
