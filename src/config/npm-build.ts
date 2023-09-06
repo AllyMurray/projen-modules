@@ -17,13 +17,20 @@ export class NpmBuild {
     project.package.addField('module', 'lib/esm/index.js');
     project.package.addField('exports', {
       '.': {
-        // TS Definitions
-        // This condition should always be included first.
-        types: './lib/types/index.d.ts',
-        // Entrypoint for ES Modules
-        import: './lib/esm/index.js',
-        // Entrypoint for CommonJS
-        require: './lib/cjs/index.js',
+        // ES Modules
+        import: {
+          // TS Definitions
+          types: './lib/esm/index.d.ts',
+          // Entrypoint
+          default: './lib/esm/index.js',
+        },
+        // CommonJS
+        require: {
+          // TS Definitions
+          types: './lib/cjs/index.d.ts',
+          // Entrypoint
+          default: './lib/cjs/index.js',
+        },
       },
     });
 
@@ -31,9 +38,6 @@ export class NpmBuild {
     if (compileTask) {
       // Remove the default compile task
       compileTask.reset();
-
-      // Add a compile task to generate the TS Typings
-      compileTask.exec(`tsc --project tsconfig.build.types.json`);
 
       // Add a compile task for both CommonJS and ES Modules
       const buildDetails = [
@@ -79,19 +83,6 @@ export class NpmBuild {
         outDir: 'lib/cjs',
         module: 'commonjs',
         target: 'es2015',
-      },
-      extends: tsExtends,
-      include: includeSrcFiles,
-      exclude: excludedBuildFiles,
-    });
-
-    // Create a TS Config for generating Typings
-    new TypescriptConfig(project, {
-      fileName: 'tsconfig.build.types.json',
-      compilerOptions: {
-        outDir: 'lib/types',
-        declaration: true,
-        emitDeclarationOnly: true,
       },
       extends: tsExtends,
       include: includeSrcFiles,
