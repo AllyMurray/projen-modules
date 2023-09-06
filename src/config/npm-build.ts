@@ -17,12 +17,13 @@ export class NpmBuild {
     project.package.addField('module', 'lib/esm/index.js');
     project.package.addField('exports', {
       '.': {
+        // TS Definitions
+        // This condition should always be included first.
+        types: './lib/types/index.d.ts',
         // Entrypoint for ES Modules
         import: './lib/esm/index.js',
         // Entrypoint for CommonJS
         require: './lib/cjs/index.js',
-        // TS Definitions
-        types: './lib/types/index.d.ts',
       },
     });
 
