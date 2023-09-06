@@ -8,7 +8,7 @@ import { TypeScriptProject } from 'projen/lib/typescript';
 export class NpmBuild {
   static defaultOptions = {
     entrypoint: 'lib/cjs/index.js',
-    entrypointTypes: 'lib/types/index.d.ts',
+    entrypointTypes: 'lib/cjs/index.d.ts',
   };
 
   constructor(project: TypeScriptProject) {
