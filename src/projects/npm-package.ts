@@ -5,6 +5,7 @@ import {
 import merge from 'ts-deepmerge';
 import { Eslint } from '../config/eslint';
 import { NpmBuild } from '../config/npm-build';
+import { NpmConfig } from '../config/npm-config';
 import { Prettier } from '../config/prettier';
 import { Projen } from '../config/projen';
 import { TsConfig } from '../config/tsconfig';
@@ -34,6 +35,7 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
     super(merge(TypeScriptNpmPackage.defaultOptions(options.name), options));
     new Eslint(this);
     new NpmBuild(this);
+    new NpmConfig(this);
   }
 
   postSynthesize(): void {
