@@ -14,6 +14,7 @@ export class NpmBuild {
   constructor(project: TypeScriptProject) {
     this.generateCreatePackageJsonScript(project);
     project.addDevDeps('commander');
+    project.package.addField('type', 'module');
     project.package.addField('module', 'lib/esm/index.js');
     project.package.addField('exports', {
       '.': {
