@@ -8,6 +8,11 @@ overrides:
   '@types/babel__traverse': 7.18.2
   '@types/prettier': 2.6.0
 
+dependencies:
+  ts-deepmerge:
+    specifier: ^6.2.0
+    version: 6.2.0
+
 devDependencies:
   '@types/jest':
     specifier: ^27
@@ -39,6 +44,9 @@ devDependencies:
   eslint-plugin-prettier:
     specifier: ^4.2.1
     version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.0.0)(prettier@2.8.4)
+  fs-extra:
+    specifier: ^10.1.0
+    version: 10.1.0
   jest:
     specifier: ^27
     version: 27.0.0(ts-node@10.9.1)
@@ -6714,6 +6722,11 @@ packages:
     dependencies:
       typescript: 4.9.5
     dev: true
+
+  /ts-deepmerge@6.2.0:
+    resolution: {integrity: sha512-2qxI/FZVDPbzh63GwWIZYE7daWKtwXZYuyc8YNq0iTmMUwn4mL0jRLsp6hfFlgbdRSR4x2ppe+E86FnvEpN7Nw==}
+    engines: {node: '>=14.13.1'}
+    dev: false
 
   /ts-jest@27.0.0(jest@27.0.0)(typescript@4.9.5):
     resolution: {integrity: sha512-YhuEjDZz9ZjxKbUlgT3XtJb9lyditEjctlo1nLcn983my3Xz4BE3c2ogHhonmGlAdUUiGlz/Dq2KOMXmf1WHfA==}
