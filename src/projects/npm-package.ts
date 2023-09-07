@@ -3,6 +3,7 @@ import {
   TypeScriptProjectOptions,
 } from 'projen/lib/typescript';
 import merge from 'ts-deepmerge';
+import { Eslint } from '../config/eslint';
 import { NpmBuild } from '../config/npm-build';
 import { Prettier } from '../config/prettier';
 import { Projen } from '../config/projen';
@@ -31,6 +32,7 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
 
   constructor(options: TypeScriptNpmPackageOptions) {
     super(merge(TypeScriptNpmPackage.defaultOptions(options.name), options));
+    new Eslint(this);
     new NpmBuild(this);
   }
 

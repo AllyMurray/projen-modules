@@ -25,6 +25,20 @@ Object {
     "overrides": Array [
       Object {
         "files": Array [
+          "*.test.ts",
+        ],
+        "rules": Object {
+          "dot-notation": "off",
+          "import/no-extraneous-dependencies": Array [
+            "error",
+            Object {
+              "devDependencies": true,
+            },
+          ],
+        },
+      },
+      Object {
+        "files": Array [
           ".projenrc.ts",
         ],
         "rules": Object {
