@@ -9,6 +9,7 @@ import { NpmConfig } from '../config/npm-config';
 import { Prettier } from '../config/prettier';
 import { Projen } from '../config/projen';
 import { TsConfig } from '../config/tsconfig';
+import { Vitest } from '../config/vitest';
 
 export interface TypeScriptNpmPackageOptions extends TypeScriptProjectOptions {}
 
@@ -23,6 +24,7 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
       ...NpmBuild.defaultOptions,
       ...Prettier.defaultOptions,
       ...Projen.defaultOptions,
+      ...Vitest.defaultOptions,
       tsconfig: TsConfig.defaultOptions,
       releaseToNpm: true,
       authorName: 'Ally Murray',
@@ -36,6 +38,7 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
     new Eslint(this);
     new NpmBuild(this);
     new NpmConfig(this);
+    new Vitest(this);
   }
 
   postSynthesize(): void {
