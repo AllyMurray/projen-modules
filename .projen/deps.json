@@ -46,6 +46,10 @@
       "type": "build"
     },
     {
+      "name": "fs-extras",
+      "type": "build"
+    },
+    {
       "name": "jest-junit",
       "version": "^15",
       "type": "build"

@@ -14,7 +14,7 @@ const project = new cdk.JsiiProject({
   repositoryUrl: 'git@github.com:AllyMurray/projen-modules.git',
   ...Prettier.defaultOptions,
   ...Projen.defaultOptions,
-  devDeps: [projenDependency],
+  devDeps: [projenDependency, 'fs-extras'],
   peerDeps: [projenDependency],
   npmAccess: NpmAccess.PUBLIC,
 });

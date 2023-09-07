@@ -6,6 +6,7 @@ export class TsConfig {
   static defaultOptions: TypescriptConfigOptions = {
     compilerOptions: {
       module: 'Node16',
+      skipLibCheck: true,
       target: 'ES2020',
     },
   };
