@@ -15,6 +15,7 @@ const project = new cdk.JsiiProject({
   repositoryUrl: 'git@github.com:AllyMurray/projen-modules.git',
   ...Prettier.defaultOptions,
   ...Projen.defaultOptions,
+  deps: ['ts-command-line-args'],
   devDeps: [projenDependency, 'fs-extra'],
   peerDeps: [projenDependency],
   npmAccess: NpmAccess.PUBLIC,
@@ -22,6 +23,7 @@ const project = new cdk.JsiiProject({
   jsiiVersion: '5.x',
   typescriptVersion: '5.x',
   gitignore: ['.DS_Store'],
+  bin: { pjmc: './lib/cli/create.js', pjmu: './lib/cli/upgrade.js' },
 });
 
 new NpmConfig(project);

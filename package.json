@@ -5,6 +5,10 @@
     "type": "git",
     "url": "git@github.com:AllyMurray/projen-modules.git"
   },
+  "bin": {
+    "pjmc": "./lib/cli/create.js",
+    "pjmu": "./lib/cli/upgrade.js"
+  },
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
@@ -62,6 +66,9 @@
   },
   "peerDependencies": {
     "projen": "0.73.30"
+  },
+  "dependencies": {
+    "ts-command-line-args": "^2.5.1"
   },
   "pnpm": {},
   "engines": {

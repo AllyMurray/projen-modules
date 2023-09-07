@@ -259,13 +259,13 @@
           "exec": "pnpm update npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,fs-extra,jest,jest-junit,jsii-diff,jsii-pacmak,npm-check-updates,prettier,standard-version,ts-jest,ts-node"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,fs-extra,jest,jest-junit,jsii-diff,jsii-pacmak,npm-check-updates,prettier,standard-version,ts-jest,ts-node,ts-command-line-args"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint fs-extra jest jest-junit jsii-diff jsii-pacmak npm-check-updates prettier standard-version ts-jest ts-node"
+          "exec": "pnpm update @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint fs-extra jest jest-junit jsii-diff jsii-pacmak npm-check-updates prettier standard-version ts-jest ts-node ts-command-line-args"
         },
         {
           "exec": "npx projen"

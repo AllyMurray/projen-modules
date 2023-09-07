@@ -11,7 +11,7 @@ import { TsConfig } from '../config/tsconfig';
 import { Vitest } from '../config/vitest';
 import { mergeDeep } from '../utils/merge';
 
-export interface TypeScriptNpmPackageOptions extends TypeScriptProjectOptions {}
+// export interface TypeScriptNpmPackageOptions extends TypeScriptProjectOptions {}
 
 /**
  *
@@ -21,7 +21,7 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
   private static defaultOptions(
     name: string,
     repository?: string
-  ): TypeScriptNpmPackageOptions {
+  ): TypeScriptProjectOptions {
     return {
       name,
       ...NpmBuild.defaultOptions,
@@ -39,7 +39,7 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
     };
   }
 
-  constructor(options: TypeScriptNpmPackageOptions) {
+  constructor(options: TypeScriptProjectOptions) {
     const { repository, ...opts } = options;
     super(
       mergeDeep(
@@ -57,4 +57,19 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
     super.postSynthesize();
     TsConfig.injectTsNodeConfig();
   }
+}
+
+export interface TypeScriptNpmPackageOptions {
+  name: string;
+  authorName: string;
+  defaultReleaseBranch?: string;
+}
+
+export function createTypeScriptNpmPackage(
+  options: TypeScriptNpmPackageOptions
+) {
+  return new TypeScriptNpmPackage({
+    ...options,
+    defaultReleaseBranch: options.defaultReleaseBranch ?? 'main',
+  });
 }
