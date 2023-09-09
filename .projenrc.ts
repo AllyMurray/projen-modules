@@ -3,7 +3,7 @@ import { NpmAccess } from 'projen/lib/javascript';
 import { Prettier } from './src/config/prettier';
 import { Projen } from './src/config/projen';
 
-const projenDependency = 'projen@0.73.9';
+const projenDependency = 'projen@0.73.13';
 
 const project = new cdk.JsiiProject({
   name: 'projen-modules',
