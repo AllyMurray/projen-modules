@@ -2,7 +2,6 @@ import {
   TypeScriptProject,
   TypeScriptProjectOptions,
 } from 'projen/lib/typescript';
-// import merge from 'ts-deepmerge';
 import { Eslint } from '../config/eslint';
 import { NpmBuild } from '../config/npm-build';
 import { NpmConfig } from '../config/npm-config';

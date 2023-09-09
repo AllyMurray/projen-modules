@@ -1,31 +1,29 @@
 /**
- *Simple object check.
- * @param item
- * @returns {boolean}
+ * Performs a deep merge of objects and returns new object. Does not modify
+ * objects (immutable) and merges arrays via concatenation.
+ *
+ * @param {...object} objects - Objects to merge
+ * @returns {object} New object with merged key/values
  */
-export function isObject(item: unknown): item is object {
-  return !!item && typeof item === 'object' && !Array.isArray(item);
-}
+export function mergeDeep<T extends Record<string, any>>(
+  ...objects: Array<T>
+): T {
+  const isObject = (obj: unknown) => obj && typeof obj === 'object';
 
-/**
- * Deep merge two objects.
- * @param target
- * @param ...sources
- */
-export function mergeDeep<T extends object>(target: T, ...sources: Array<T>) {
-  if (!sources.length) return target;
-  const source = sources.shift();
+  return objects.reduce<Record<string, unknown>>((prev, obj) => {
+    Object.keys(obj).forEach((key) => {
+      const pVal = prev[key];
+      const oVal = obj[key];
 
-  if (isObject(target) && isObject(source)) {
-    for (const key in source) {
-      if (isObject(source[key])) {
-        if (!target[key]) Object.assign(target, { [key]: {} });
-        mergeDeep(target[key] as object, source[key] as object);
+      if (Array.isArray(pVal) && Array.isArray(oVal)) {
+        prev[key] = pVal.concat(...oVal);
+      } else if (isObject(pVal) && isObject(oVal)) {
+        prev[key] = mergeDeep(pVal, oVal);
       } else {
-        Object.assign(target, { [key]: source[key] });
+        prev[key] = oVal;
       }
-    }
-  }
+    });
 
-  return mergeDeep(target, ...sources);
+    return prev;
+  }, {}) as T;
 }
