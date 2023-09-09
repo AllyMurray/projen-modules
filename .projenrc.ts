@@ -24,16 +24,6 @@ const project = new cdk.JsiiProject({
   jsiiVersion: '5.x',
   typescriptVersion: '5.x',
   gitignore: ['.DS_Store'],
-  releaseWorkflowSetupSteps: [
-    {
-      name: 'Upload Logs',
-      uses: 'actions/upload-artifact@v3',
-      with: {
-        name: 'npm-logs',
-        path: '/home/runner/.npm/_logs',
-      },
-    },
-  ],
 });
 
 new NpmConfig(project);

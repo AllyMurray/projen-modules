@@ -34,11 +34,6 @@ jobs:
           node-version: 18.0.0
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
-      - name: Upload Logs
-        uses: actions/upload-artifact@v3
-        with:
-          name: npm-logs
-          path: /home/runner/.npm/_logs
       - name: release
         run: npx projen release
       - name: Check for new commits
