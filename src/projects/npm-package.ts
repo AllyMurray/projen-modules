@@ -2,7 +2,7 @@ import {
   TypeScriptProject,
   TypeScriptProjectOptions,
 } from 'projen/lib/typescript';
-import merge from 'ts-deepmerge';
+// import merge from 'ts-deepmerge';
 import { Eslint } from '../config/eslint';
 import { NpmBuild } from '../config/npm-build';
 import { NpmConfig } from '../config/npm-config';
@@ -10,6 +10,7 @@ import { Prettier } from '../config/prettier';
 import { Projen } from '../config/projen';
 import { TsConfig } from '../config/tsconfig';
 import { Vitest } from '../config/vitest';
+import { mergeDeep } from '../utils/merge';
 
 export interface TypeScriptNpmPackageOptions extends TypeScriptProjectOptions {}
 
@@ -34,7 +35,9 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
   }
 
   constructor(options: TypeScriptNpmPackageOptions) {
-    super(merge(TypeScriptNpmPackage.defaultOptions(options.name), options));
+    super(
+      mergeDeep(TypeScriptNpmPackage.defaultOptions(options.name), options)
+    );
     new Eslint(this);
     new NpmBuild(this);
     new NpmConfig(this);

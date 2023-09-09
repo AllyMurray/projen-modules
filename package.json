@@ -63,12 +63,6 @@
   "peerDependencies": {
     "projen": "0.73.15"
   },
-  "dependencies": {
-    "ts-deepmerge": "^6.2.0"
-  },
-  "bundledDependencies": [
-    "ts-deepmerge"
-  ],
   "pnpm": {},
   "engines": {
     "node": ">= 18.0.0"

@@ -15,8 +15,8 @@ const project = new cdk.JsiiProject({
   repositoryUrl: 'git@github.com:AllyMurray/projen-modules.git',
   ...Prettier.defaultOptions,
   ...Projen.defaultOptions,
-  deps: ['ts-deepmerge'],
-  bundledDeps: ['ts-deepmerge'],
+  // deps: ['ts-deepmerge'],
+  // bundledDeps: ['ts-deepmerge'],
   devDeps: [projenDependency, 'fs-extra'],
   peerDeps: [projenDependency],
   npmAccess: NpmAccess.PUBLIC,
@@ -24,6 +24,16 @@ const project = new cdk.JsiiProject({
   jsiiVersion: '5.x',
   typescriptVersion: '5.x',
   gitignore: ['.DS_Store'],
+  // releaseWorkflowSetupSteps: [
+  //   {
+  //     name: 'Upload Logs',
+  //     uses: 'actions/upload-artifact@v3',
+  //     with: {
+  //       name: 'npm-logs',
+  //       path: '/home/runner/.npm/_logs',
+  //     },
+  //   },
+  // ],
 });
 
 new NpmConfig(project);
