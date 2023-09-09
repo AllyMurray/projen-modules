@@ -20,6 +20,7 @@ const project = new cdk.JsiiProject({
   devDeps: [projenDependency, 'fs-extra'],
   peerDeps: [projenDependency],
   npmAccess: NpmAccess.PUBLIC,
+  minNodeVersion: '18.0.0',
 });
 
 new NpmConfig(project);
