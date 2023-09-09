@@ -1,5 +1,6 @@
 import { cdk } from 'projen';
 import { NpmAccess } from 'projen/lib/javascript';
+import { NpmConfig } from './src/config/npm-config';
 import { Prettier } from './src/config/prettier';
 import { Projen } from './src/config/projen';
 
@@ -20,5 +21,7 @@ const project = new cdk.JsiiProject({
   peerDeps: [projenDependency],
   npmAccess: NpmAccess.PUBLIC,
 });
+
+new NpmConfig(project);
 
 project.synth();
