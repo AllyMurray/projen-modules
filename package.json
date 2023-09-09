@@ -65,6 +65,9 @@
   "dependencies": {
     "ts-deepmerge": "^6.2.0"
   },
+  "bundledDependencies": [
+    "ts-deepmerge"
+  ],
   "pnpm": {
     "overrides": {
       "@types/babel__traverse": "7.18.2",

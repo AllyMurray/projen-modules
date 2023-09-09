@@ -15,6 +15,7 @@ const project = new cdk.JsiiProject({
   ...Prettier.defaultOptions,
   ...Projen.defaultOptions,
   deps: ['ts-deepmerge'],
+  bundledDeps: ['ts-deepmerge'],
   devDeps: [projenDependency, 'fs-extra'],
   peerDeps: [projenDependency],
   npmAccess: NpmAccess.PUBLIC,
