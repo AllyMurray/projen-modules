@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { cdk } from 'projen';
 import { NpmAccess } from 'projen/lib/javascript';
 import { NpmConfig } from './src/config/npm-config';
@@ -29,12 +28,8 @@ const project = new cdk.JsiiProject({
 
 new NpmConfig(project);
 
-// tsconfig is ignored by git but we copy the dev file so vscode can use it
-const tsconfig = fs
-  .readFileSync('tsconfig.dev.json', 'utf8')
-  .split('\n')
-  .slice(1)
-  .join('\n');
-fs.writeFileSync('tsconfig.json', tsconfig);
+project.addTask('create-tsconfig', {
+  exec: 'ts-node ./src/scripts/create-tsconfig.ts',
+});
 
 project.synth();

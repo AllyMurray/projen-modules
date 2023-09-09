@@ -91,6 +91,14 @@
         }
       ]
     },
+    "create-tsconfig": {
+      "name": "create-tsconfig",
+      "steps": [
+        {
+          "exec": "ts-node ./src/scripts/create-tsconfig.ts"
+        }
+      ]
+    },
     "default": {
       "name": "default",
       "description": "Synthesize project files",

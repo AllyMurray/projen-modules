@@ -12,6 +12,14 @@ Extends the default Projen TypeScript project with the following changes:
 - license = 'MIT',
 - build configured for commonjs and es module consumption
 
+## Locally Development
+
+JSII does not use the tsconfig.json file, instead, it uses the tsconfig.dev.json file. tsconfig.json is in the gitignore file, we can't point vscode at the dev file so there is a script that copies it from the dev file to the tsconfig.json file.
+
+```bash
+pnpm create-tsconfig
+```
+
 **Create a new TypeScript NPM Package:**
 
 ```bash

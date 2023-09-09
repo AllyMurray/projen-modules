@@ -11,6 +11,7 @@
     "clobber": "npx projen clobber",
     "compat": "npx projen compat",
     "compile": "npx projen compile",
+    "create-tsconfig": "npx projen create-tsconfig",
     "default": "npx projen default",
     "eject": "npx projen eject",
     "eslint": "npx projen eslint",
