@@ -28,6 +28,8 @@ const project = new cdk.JsiiProject({
 
 new NpmConfig(project);
 
+project.npmignore?.addPatterns('.projenrc.ts');
+
 project.addTask('create-tsconfig', {
   exec: 'ts-node ./src/scripts/create-tsconfig.ts',
 });
