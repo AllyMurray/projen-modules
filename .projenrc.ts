@@ -30,7 +30,7 @@ const project = new cdk.JsiiProject({
       uses: 'actions/upload-artifact@v3',
       with: {
         name: 'npm-logs',
-        path: '/home/runner/.npm/_logs/*.log',
+        path: '/home/runner/.npm/_logs',
       },
     },
   ],
