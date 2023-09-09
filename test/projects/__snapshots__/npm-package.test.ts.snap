@@ -595,6 +595,7 @@ tsconfig.tsbuildinfo
 
 resolution-mode=highest
 fund=false
+legacy-peer-deps=true
 node-linker=hoisted
 save-exact=true
 ",
