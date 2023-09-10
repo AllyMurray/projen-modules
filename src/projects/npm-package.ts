@@ -18,7 +18,10 @@ export interface TypeScriptNpmPackageOptions extends TypeScriptProjectOptions {}
  * @pjid typescript-npm-package
  */
 export class TypeScriptNpmPackage extends TypeScriptProject {
-  private static defaultOptions(name: string): TypeScriptNpmPackageOptions {
+  private static defaultOptions(
+    name: string,
+    repository?: string
+  ): TypeScriptNpmPackageOptions {
     return {
       name,
       ...NpmBuild.defaultOptions,
@@ -30,12 +33,19 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
       authorName: 'Ally Murray',
       authorEmail: 'allymurray88@gmail.com',
       gitignore: ['.DS_Store', '*yalc*', 'test-reports'],
+      repository: repository ? `${repository}.git` : undefined,
+      bugsUrl: repository ? `${repository}/issues` : undefined,
+      homepage: repository ? `${repository}#readme` : undefined,
     };
   }
 
   constructor(options: TypeScriptNpmPackageOptions) {
+    const { repository, ...opts } = options;
     super(
-      mergeDeep(TypeScriptNpmPackage.defaultOptions(options.name), options)
+      mergeDeep(
+        TypeScriptNpmPackage.defaultOptions(options.name, options.repository),
+        opts
+      )
     );
     new Eslint(this);
     new NpmBuild(this);
