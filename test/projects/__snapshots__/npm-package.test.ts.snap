@@ -680,6 +680,10 @@ scripts/create-package-json.ts
         "name": "typescript",
         "type": "build",
       },
+      {
+        "name": "vitest",
+        "type": "runtime",
+      },
     ],
   },
   ".projen/files.json": {
@@ -942,13 +946,13 @@ scripts/create-package-json.ts
             "exec": "pnpm update npm-check-updates",
           },
           {
-            "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,commander,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,npm-check-updates,prettier,projen,standard-version,ts-node,typescript",
+            "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,commander,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,npm-check-updates,prettier,projen,standard-version,ts-node,typescript,vitest",
           },
           {
             "exec": "pnpm i --no-frozen-lockfile",
           },
           {
-            "exec": "pnpm update @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser commander eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint npm-check-updates prettier projen standard-version ts-node typescript",
+            "exec": "pnpm update @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser commander eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint npm-check-updates prettier projen standard-version ts-node typescript vitest",
           },
           {
             "exec": "npx projen",
@@ -996,6 +1000,9 @@ SOFTWARE.
       "email": "allymurray88@gmail.com",
       "name": "Ally Murray",
       "organization": false,
+    },
+    "dependencies": {
+      "vitest": "*",
     },
     "devDependencies": {
       "@types/node": "^16",
@@ -1143,6 +1150,9 @@ fs.writeFileSync(
       "strictPropertyInitialization": true,
       "stripInternal": true,
       "target": "ES2020",
+      "types": [
+        "vitest/globals",
+      ],
     },
     "exclude": [
       "node_modules",
@@ -1183,6 +1193,9 @@ fs.writeFileSync(
       "strictPropertyInitialization": true,
       "stripInternal": true,
       "target": "ES2020",
+      "types": [
+        "vitest/globals",
+      ],
     },
     "exclude": [],
     "include": [

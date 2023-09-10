@@ -6,6 +6,7 @@ export class Vitest {
   };
 
   constructor(private project: TypeScriptProject) {
+    this.project.addDeps('vitest');
     this.setTestTask();
   }
 

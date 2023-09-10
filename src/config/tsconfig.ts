@@ -8,6 +8,10 @@ export class TsConfig {
       module: 'Node16',
       skipLibCheck: true,
       target: 'ES2020',
+
+      // @ts-expect-error types is missing from compilerOptions
+      // TODO: Update this to allow injecting types
+      types: ['vitest/globals'],
     },
   };
 
