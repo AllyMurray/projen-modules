@@ -682,7 +682,7 @@ scripts/create-package-json.ts
       },
       {
         "name": "vitest",
-        "type": "runtime",
+        "type": "build",
       },
     ],
   },
@@ -1001,9 +1001,6 @@ SOFTWARE.
       "name": "Ally Murray",
       "organization": false,
     },
-    "dependencies": {
-      "vitest": "*",
-    },
     "devDependencies": {
       "@types/node": "^16",
       "@typescript-eslint/eslint-plugin": "^6",
@@ -1021,6 +1018,7 @@ SOFTWARE.
       "standard-version": "^9",
       "ts-node": "*",
       "typescript": "*",
+      "vitest": "*",
     },
     "exports": {
       ".": {
