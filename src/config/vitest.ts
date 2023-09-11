@@ -20,6 +20,7 @@ export class Vitest {
 
   private config() {
     const config = new SourceCode(this.project, 'vitest.config.js');
+    config.line('');
     config.line(`import { defineConfig } from 'vitest/config';`);
     config.open(`export default defineConfig({`);
     config.open(`test: {`);
