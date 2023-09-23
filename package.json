@@ -54,14 +54,14 @@
     "jsii-rosetta": "5.x",
     "npm-check-updates": "^16",
     "prettier": "^2.8.8",
-    "projen": "0.73.15",
+    "projen": "0.73.30",
     "standard-version": "^9",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "typescript": "5.x"
   },
   "peerDependencies": {
-    "projen": "0.73.15"
+    "projen": "0.73.30"
   },
   "pnpm": {},
   "engines": {

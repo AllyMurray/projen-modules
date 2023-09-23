@@ -4,7 +4,7 @@ import { NpmConfig } from './src/config/npm-config';
 import { Prettier } from './src/config/prettier';
 import { Projen } from './src/config/projen';
 
-const projenDependency = 'projen@0.73.15';
+const projenDependency = 'projen@0.73.30';
 
 const project = new cdk.JsiiProject({
   name: 'projen-modules',
