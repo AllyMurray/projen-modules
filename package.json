@@ -68,7 +68,7 @@
   "engines": {
     "node": ">= 18.0.0"
   },
-  "main": "dist/index.cjs",
+  "main": "lib/index.cjs",
   "license": "MIT",
   "homepage": "github.com:AllyMurray/projen-modules#readme",
   "publishConfig": {
@@ -78,18 +78,18 @@
   "bugs": {
     "url": "github.com:AllyMurray/projen-modules/issues"
   },
-  "types": "dist/index.d.cts",
+  "types": "lib/index.d.cts",
   "type": "module",
-  "module": "dist/index.js",
+  "module": "lib/index.js",
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.js"
       },
       "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
+        "types": "./lib/index.d.cts",
+        "default": "./lib/index.cjs"
       }
     }
   },

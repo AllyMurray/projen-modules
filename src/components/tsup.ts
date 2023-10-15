@@ -9,9 +9,9 @@ export type TsUpOptions = Options;
 export function legacyEntryPoints() {
   return {
     // CJS fall-back for older versions of Node.js
-    entrypoint: 'dist/index.cjs',
+    entrypoint: 'lib/index.cjs',
     // Fall-back for older versions of TypeScript
-    entrypointTypes: 'dist/index.d.cts',
+    entrypointTypes: 'lib/index.d.cts',
   };
 }
 
@@ -23,6 +23,7 @@ function defaultTsUpOptions(): TsUpOptions {
     entry: ['src/**/*.ts'],
     format: ['cjs', 'esm'],
     minify: false,
+    outDir: 'lib',
     shims: true,
     sourcemap: true,
     splitting: false,
@@ -56,22 +57,22 @@ export class TsUp extends Component {
 
   private configurePackageJson() {
     this.project.package.addField('type', 'module');
-    this.project.package.addField('module', 'dist/index.js');
+    this.project.package.addField('module', 'lib/index.js');
     this.project.package.addField('exports', {
       '.': {
         // ES Modules entrypoint
         import: {
           // Where typescript will look for the types
-          types: './dist/index.d.ts',
+          types: './lib/index.d.ts',
           // Where Node.js will look
-          default: './dist/index.js',
+          default: './lib/index.js',
         },
         // CommonJS entrypoint
         require: {
           // Where typescript will look for the types
-          types: './dist/index.d.cts',
+          types: './lib/index.d.cts',
           // Where Node.js will look
-          default: './dist/index.cjs',
+          default: './lib/index.cjs',
         },
       },
     });

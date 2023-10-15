@@ -16,6 +16,7 @@ export function tsup() {
       "esm"
     ],
     "minify": false,
+    "outDir": "lib",
     "shims": true,
     "sourcemap": true,
     "splitting": false,

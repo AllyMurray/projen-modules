@@ -7,14 +7,14 @@ try {
   const promises = executableScripts.map(async (script) => {
     return fileExtensions.map(async (extension) => {
       const fileContent = await readFile(
-        `dist/cli/${script}.${extension}`,
+        `lib/cli/${script}.${extension}`,
         'utf8'
       );
       const newContent = [
         '#!/usr/bin/env node',
         ...fileContent.split('\n'),
       ].join('\n');
-      await writeFile(`dist/cli/${script}.${extension}`, newContent);
+      await writeFile(`lib/cli/${script}.${extension}`, newContent);
     });
   });
 
