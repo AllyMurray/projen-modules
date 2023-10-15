@@ -5,9 +5,7 @@
  * @param {...object} objects - Objects to merge
  * @returns {object} New object with merged key/values
  */
-export function mergeDeep<T extends Record<string, any>>(
-  ...objects: Array<T>
-): T {
+export function merge<T extends Record<string, any>>(...objects: Array<T>): T {
   const isObject = (obj: unknown) => obj && typeof obj === 'object';
 
   return objects.reduce<Record<string, unknown>>((prev, obj) => {
@@ -18,7 +16,7 @@ export function mergeDeep<T extends Record<string, any>>(
       if (Array.isArray(pVal) && Array.isArray(oVal)) {
         prev[key] = pVal.concat(...oVal);
       } else if (isObject(pVal) && isObject(oVal)) {
-        prev[key] = mergeDeep(pVal, oVal);
+        prev[key] = merge(pVal, oVal);
       } else {
         prev[key] = oVal;
       }

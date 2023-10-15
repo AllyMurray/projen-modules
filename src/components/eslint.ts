@@ -1,7 +1,7 @@
-import { TypeScriptProject } from 'projen/lib/typescript';
+import { typescript } from 'projen';
 
 export class Eslint {
-  constructor(private project: TypeScriptProject) {
+  constructor(private project: typescript.TypeScriptProject) {
     this.configureTestFiles();
   }
 

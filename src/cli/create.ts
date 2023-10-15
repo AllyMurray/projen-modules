@@ -1,22 +1,26 @@
-#! /usr/bin/env node
-
+import { writeFileSync } from 'fs';
+import path from 'path';
 import { parse } from 'ts-command-line-args';
-import {
-  TypeScriptNpmPackageOptions,
-  createTypeScriptNpmPackage,
-} from '../projects/npm-package';
 
-type Args = { projectType: string } & TypeScriptNpmPackageOptions;
+type Args = {
+  name: string;
+  outDir: string;
+};
 
 export const args = parse<Args>({
-  projectType: String,
   name: String,
-  authorName: String,
-  defaultReleaseBranch: { type: String, optional: true },
+  outDir: { type: String },
 });
 
-if (args.projectType === 'typescript-npm-package') {
-  createTypeScriptNpmPackage({
-    ...args,
-  });
-}
+writeFileSync(
+  path.join(args.outDir, '.projenrc.ts'),
+  [
+    `import { TypeScriptNpmPackage } from '@ally-murray/projen-modules;`,
+    ``,
+    `const project = createTypeScriptNpmPackage({ name: ${args.name} });`,
+    ``,
+    `project.synth();`,
+  ]
+    .toString()
+    .replace(/,/g, '\n')
+);

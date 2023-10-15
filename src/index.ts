@@ -1,1 +1,1 @@
-export * from './projects/npm-package';
+export * from './projects/npm-package.js';

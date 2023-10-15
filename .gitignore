@@ -31,10 +31,9 @@ jspm_packages/
 .yarn-integrity
 .cache
 .DS_Store
+*yalc*
+test-reports
 !/.projenrc.js
-/test-reports/
-junit.xml
-/coverage/
 !/.github/workflows/build.yml
 /dist/changelog.md
 /dist/version.txt
@@ -46,10 +45,12 @@ junit.xml
 !/.prettierrc.json
 !/.npmrc
 !/test/
+!/tsconfig.json
 !/tsconfig.dev.json
 !/src/
 /lib
 /dist/
 !/.eslintrc.json
-.jsii
-tsconfig.json
+junit.xml
+!/tsup.config.ts
+!/vitest.config.ts

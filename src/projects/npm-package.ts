@@ -1,34 +1,30 @@
-import {
-  TypeScriptProject,
-  TypeScriptProjectOptions,
-} from 'projen/lib/typescript';
-import { Eslint } from '../config/eslint';
-import { NpmBuild } from '../config/npm-build';
-import { NpmConfig } from '../config/npm-config';
-import { Prettier } from '../config/prettier';
-import { Projen } from '../config/projen';
-import { TsConfig } from '../config/tsconfig';
-import { Vitest } from '../config/vitest';
-import { mergeDeep } from '../utils/merge';
+import { typescript } from 'projen';
+import { Eslint } from '../components/eslint.js';
+import { NpmConfig } from '../components/npm-config.js';
+import { Prettier } from '../components/prettier.js';
+import { Projen } from '../components/projen.js';
+import { defaultTsConfig, injectTsNodeConfig } from '../components/tsconfig.js';
+import { TsUp, TsUpOptions, legacyEntryPoints } from '../components/tsup.js';
+import { Vitest, defaultVitestOptions } from '../components/vitest.js';
+import { merge } from '../utils/merge.js';
 
-// export interface TypeScriptNpmPackageOptions extends TypeScriptProjectOptions {}
+export interface TypeScriptNpmPackageOptions
+  extends typescript.TypeScriptProjectOptions {
+  tsUpOptions?: TsUpOptions;
+}
 
-/**
- *
- * @pjid typescript-npm-package
- */
-export class TypeScriptNpmPackage extends TypeScriptProject {
+export class TypeScriptNpmPackage extends typescript.TypeScriptProject {
   private static defaultOptions(
     name: string,
     repository?: string
-  ): TypeScriptProjectOptions {
+  ): typescript.TypeScriptProjectOptions {
     return {
       name,
-      ...NpmBuild.defaultOptions,
       ...Prettier.defaultOptions,
       ...Projen.defaultOptions,
-      ...Vitest.defaultOptions,
-      tsconfig: TsConfig.defaultOptions,
+      ...defaultVitestOptions(),
+      ...legacyEntryPoints(),
+      tsconfig: defaultTsConfig(),
       releaseToNpm: true,
       authorName: 'Ally Murray',
       authorEmail: 'allymurray88@gmail.com',
@@ -36,37 +32,35 @@ export class TypeScriptNpmPackage extends TypeScriptProject {
       repository: repository ? `${repository}.git` : undefined,
       bugsUrl: repository ? `${repository}/issues` : undefined,
       homepage: repository ? `${repository}#readme` : undefined,
+      jest: false, // Use vitest instead
     };
   }
 
-  constructor(options: TypeScriptProjectOptions) {
+  constructor(options: TypeScriptNpmPackageOptions) {
     const { repository, ...opts } = options;
     super(
-      mergeDeep(
+      merge(
         TypeScriptNpmPackage.defaultOptions(options.name, options.repository),
         opts
       )
     );
     new Eslint(this);
-    new NpmBuild(this);
+    new TsUp(this, options.tsUpOptions ?? {});
     new NpmConfig(this);
     new Vitest(this);
+    this.npmignore?.addPatterns('.projenrc.ts');
   }
 
   postSynthesize(): void {
     super.postSynthesize();
-    TsConfig.injectTsNodeConfig();
+    injectTsNodeConfig();
   }
 }
 
-export interface TypeScriptNpmPackageOptions {
-  name: string;
-  authorName: string;
-  defaultReleaseBranch?: string;
-}
+type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
 export function createTypeScriptNpmPackage(
-  options: TypeScriptNpmPackageOptions
+  options: Optional<TypeScriptNpmPackageOptions, 'defaultReleaseBranch'>
 ) {
   return new TypeScriptNpmPackage({
     ...options,

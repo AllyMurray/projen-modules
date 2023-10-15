@@ -1,37 +1,30 @@
-import { cdk } from 'projen';
-import { NpmAccess } from 'projen/lib/javascript';
-import { NpmConfig } from './src/config/npm-config';
-import { Prettier } from './src/config/prettier';
-import { Projen } from './src/config/projen';
+import { javascript } from 'projen';
+import { projenDependency } from './src/components/projen.js';
+import { createTypeScriptNpmPackage } from './src/projects/npm-package.js';
 
-const projenDependency = 'projen@0.73.30';
-
-const project = new cdk.JsiiProject({
+const project = createTypeScriptNpmPackage({
   name: 'projen-modules',
-  description: 'External modules for the Projen project generator',
-  author: 'Ally Murray',
-  authorAddress: 'allymurray88@gmail.com',
   packageName: '@ally-murray/projen-modules',
-  repositoryUrl: 'git@github.com:AllyMurray/projen-modules.git',
-  ...Prettier.defaultOptions,
-  ...Projen.defaultOptions,
+  description: 'External modules for the Projen project generator',
+  repository: 'github.com:AllyMurray/projen-modules',
   deps: ['ts-command-line-args'],
-  devDeps: [projenDependency, 'fs-extra'],
+  devDeps: [
+    projenDependency,
+    '@types/fs-extra',
+    'fs-extra',
+    'glob',
+    'tsup',
+    'vitest',
+  ],
   peerDeps: [projenDependency],
-  npmAccess: NpmAccess.PUBLIC,
+  npmAccess: javascript.NpmAccess.PUBLIC,
   minNodeVersion: '18.0.0',
-  jsiiVersion: '5.x',
   typescriptVersion: '5.x',
-  gitignore: ['.DS_Store'],
-  bin: { pjmc: './lib/cli/create.js', pjmu: './lib/cli/upgrade.js' },
-});
-
-new NpmConfig(project);
-
-project.npmignore?.addPatterns('.projenrc.ts');
-
-project.addTask('create-tsconfig', {
-  exec: 'ts-node ./src/scripts/create-tsconfig.ts',
+  bin: { pjc: './lib/cli/create.js', pju: './lib/cli/upgrade.js' },
+  tsUpOptions: {
+    entry: ['!src/scripts/**/*'],
+    onSuccess: 'ts-node src/scripts/make-scripts-executable.ts',
+  },
 });
 
 project.synth();

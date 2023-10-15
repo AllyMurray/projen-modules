@@ -1,5 +1,5 @@
-import { synthSnapshot } from 'projen/lib/util/synth';
-import { TypeScriptNpmPackage } from '../../src/projects/npm-package';
+import { TypeScriptNpmPackage } from './npm-package.js';
+import { synthSnapshot } from '../utils/test/synth.js';
 
 describe('TypeScriptNpmPackage', () => {
   it('synthesizes', () => {

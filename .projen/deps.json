@@ -1,7 +1,7 @@
 {
   "dependencies": [
     {
-      "name": "@types/jest",
+      "name": "@types/fs-extra",
       "type": "build"
     },
     {
@@ -17,6 +17,10 @@
     {
       "name": "@typescript-eslint/parser",
       "version": "^6",
+      "type": "build"
+    },
+    {
+      "name": "@vitest/coverage-v8",
       "type": "build"
     },
     {
@@ -49,30 +53,7 @@
       "type": "build"
     },
     {
-      "name": "jest",
-      "type": "build"
-    },
-    {
-      "name": "jest-junit",
-      "version": "^15",
-      "type": "build"
-    },
-    {
-      "name": "jsii-diff",
-      "type": "build"
-    },
-    {
-      "name": "jsii-pacmak",
-      "type": "build"
-    },
-    {
-      "name": "jsii-rosetta",
-      "version": "5.x",
-      "type": "build"
-    },
-    {
-      "name": "jsii",
-      "version": "5.x",
+      "name": "glob",
       "type": "build"
     },
     {
@@ -95,16 +76,20 @@
       "type": "build"
     },
     {
-      "name": "ts-jest",
+      "name": "ts-node",
       "type": "build"
     },
     {
-      "name": "ts-node",
+      "name": "tsup",
       "type": "build"
     },
     {
       "name": "typescript",
       "version": "5.x",
+      "type": "build"
+    },
+    {
+      "name": "vitest",
       "type": "build"
     },
     {

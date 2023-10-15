@@ -73,29 +73,12 @@
       ],
       "condition": "git diff --exit-code > /dev/null"
     },
-    "compat": {
-      "name": "compat",
-      "description": "Perform API compatibility check against latest version",
-      "steps": [
-        {
-          "exec": "jsii-diff npm:$(node -p \"require('./package.json').name\") -k --ignore-file .compatignore || (echo \"\nUNEXPECTED BREAKING CHANGES: add keys such as 'removed:constructs.Node.of' to .compatignore to skip.\n\" && exit 1)"
-        }
-      ]
-    },
     "compile": {
       "name": "compile",
       "description": "Only compile",
       "steps": [
         {
-          "exec": "jsii --silence-warnings=reserved-word"
-        }
-      ]
-    },
-    "create-tsconfig": {
-      "name": "create-tsconfig",
-      "steps": [
-        {
-          "exec": "ts-node ./src/scripts/create-tsconfig.ts"
+          "exec": "npx tsup"
         }
       ]
     },
@@ -152,25 +135,10 @@
       "description": "Creates the distribution package",
       "steps": [
         {
-          "exec": "if [ ! -z ${CI} ]; then rsync -a . .repo --exclude .git --exclude node_modules && rm -rf dist && mv .repo dist; else npx projen package-all; fi"
-        }
-      ]
-    },
-    "package-all": {
-      "name": "package-all",
-      "description": "Packages artifacts for all target languages",
-      "steps": [
+          "exec": "mkdir -p dist/js"
+        },
         {
-          "spawn": "package:js"
-        }
-      ]
-    },
-    "package:js": {
-      "name": "package:js",
-      "description": "Create js language bindings",
-      "steps": [
-        {
-          "exec": "jsii-pacmak -v --target js"
+          "exec": "mv $(npm pack) dist/js/"
         }
       ]
     },
@@ -215,7 +183,7 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --coverageProvider=v8 --updateSnapshot",
+          "exec": "vitest --dir=src --coverage",
           "receiveArgs": true
         },
         {
@@ -225,10 +193,9 @@
     },
     "test:watch": {
       "name": "test:watch",
-      "description": "Run jest in watch mode",
       "steps": [
         {
-          "exec": "jest --watch"
+          "exec": "vitest --dir=src --coverage --watch"
         }
       ]
     },
@@ -259,13 +226,13 @@
           "exec": "pnpm update npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,fs-extra,jest,jest-junit,jsii-diff,jsii-pacmak,npm-check-updates,prettier,standard-version,ts-jest,ts-node,ts-command-line-args"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/fs-extra,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vitest/coverage-v8,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,fs-extra,glob,npm-check-updates,prettier,standard-version,ts-node,tsup,vitest,ts-command-line-args"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint fs-extra jest jest-junit jsii-diff jsii-pacmak npm-check-updates prettier standard-version ts-jest ts-node ts-command-line-args"
+          "exec": "pnpm update @types/fs-extra @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vitest/coverage-v8 eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint fs-extra glob npm-check-updates prettier standard-version ts-node tsup vitest ts-command-line-args"
         },
         {
           "exec": "npx projen"
@@ -280,7 +247,7 @@
       "description": "Watch & compile in the background",
       "steps": [
         {
-          "exec": "jsii -w --silence-warnings=reserved-word"
+          "exec": "tsc --build -w"
         }
       ]
     }

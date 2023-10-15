@@ -1,9 +1,11 @@
-import { NodePackageManager } from 'projen/lib/javascript';
+import { javascript } from 'projen';
+
+export const projenDependency = 'projen@0.73.30';
 
 export class Projen {
   static defaultOptions = {
     defaultReleaseBranch: 'main',
-    packageManager: NodePackageManager.PNPM,
+    packageManager: javascript.NodePackageManager.PNPM,
     pnpmVersion: '8',
     projenrcTs: true,
     license: 'MIT',
