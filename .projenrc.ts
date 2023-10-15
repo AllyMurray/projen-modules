@@ -1,4 +1,3 @@
-import { javascript } from 'projen';
 import { projenDependency } from './src/components/projen.js';
 import { createTypeScriptNpmPackage } from './src/projects/npm-package.js';
 
@@ -14,13 +13,8 @@ const project = createTypeScriptNpmPackage({
     'comment-json',
     'fs-extra',
     'glob',
-    'tsup',
-    'vitest',
   ],
   peerDeps: [projenDependency],
-  npmAccess: javascript.NpmAccess.PUBLIC,
-  minNodeVersion: '18.0.0',
-  typescriptVersion: '5.x',
   bin: { pjc: './lib/cli/create.js', pju: './lib/cli/upgrade.js' },
   tsUpOptions: {
     entry: ['!src/scripts/**/*'],

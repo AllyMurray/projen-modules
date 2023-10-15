@@ -1,4 +1,4 @@
-import { typescript } from 'projen';
+import { javascript, typescript } from 'projen';
 import { Eslint } from '../components/eslint.js';
 import { NpmConfig } from '../components/npm-config.js';
 import { Prettier } from '../components/prettier.js';
@@ -28,6 +28,7 @@ export class TypeScriptNpmPackage extends typescript.TypeScriptProject {
       releaseToNpm: true,
       authorName: 'Ally Murray',
       authorEmail: 'allymurray88@gmail.com',
+      npmAccess: javascript.NpmAccess.PUBLIC,
       gitignore: ['.DS_Store', '*yalc*', 'test-reports'],
       repository: repository ? `${repository}.git` : undefined,
       bugsUrl: repository ? `${repository}/issues` : undefined,
