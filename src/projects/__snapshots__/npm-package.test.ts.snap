@@ -1023,18 +1023,18 @@ SOFTWARE.
     "exports": {
       ".": {
         "import": {
-          "default": "./dist/index.js",
-          "types": "./dist/index.d.ts",
+          "default": "./lib/index.js",
+          "types": "./lib/index.d.ts",
         },
         "require": {
-          "default": "./dist/index.cjs",
-          "types": "./dist/index.d.cts",
+          "default": "./lib/index.cjs",
+          "types": "./lib/index.d.cts",
         },
       },
     },
     "license": "MIT",
-    "main": "dist/index.cjs",
-    "module": "dist/index.js",
+    "main": "lib/index.cjs",
+    "module": "lib/index.js",
     "name": "test",
     "pnpm": {},
     "scripts": {
@@ -1058,7 +1058,7 @@ SOFTWARE.
       "watch": "npx projen watch",
     },
     "type": "module",
-    "types": "dist/index.d.cts",
+    "types": "lib/index.d.cts",
     "version": "0.0.0",
   },
   "tsconfig.dev.json": {
@@ -1160,6 +1160,7 @@ export function tsup() {
       \\"esm\\"
     ],
     \\"minify\\": false,
+    \\"outDir\\": \\"lib\\",
     \\"shims\\": true,
     \\"sourcemap\\": true,
     \\"splitting\\": false
