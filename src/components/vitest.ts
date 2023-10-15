@@ -20,7 +20,7 @@ export function defaultVitestOptions(): VitestOptions {
         statements: 89,
         exclude: ['src/utils/test/*'],
       },
-      exclude: ['node_modules', 'dist', '.idea', '.git', '.cache'],
+      exclude: ['node_modules', 'dist', 'lib', '.idea', '.git', '.cache'],
       globals: true,
       silent: true,
       watch: false,
