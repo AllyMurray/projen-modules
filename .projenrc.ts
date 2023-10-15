@@ -11,6 +11,7 @@ const project = createTypeScriptNpmPackage({
   devDeps: [
     projenDependency,
     '@types/fs-extra',
+    'comment-json',
     'fs-extra',
     'glob',
     'tsup',

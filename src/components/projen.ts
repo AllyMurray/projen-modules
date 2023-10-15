@@ -1,6 +1,6 @@
 import { javascript } from 'projen';
 
-export const projenDependency = 'projen@0.73.30';
+export const projenDependency = 'projen@0.74.16';
 
 export class Projen {
   static defaultOptions = {

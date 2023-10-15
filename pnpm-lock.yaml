@@ -25,6 +25,9 @@ devDependencies:
   '@vitest/coverage-v8':
     specifier: ^0.34.6
     version: 0.34.6(vitest@0.34.6)
+  comment-json:
+    specifier: ^4.2.3
+    version: 4.2.3
   eslint:
     specifier: ^8
     version: 8.49.0
@@ -56,8 +59,8 @@ devDependencies:
     specifier: ^2.8.8
     version: 2.8.8
   projen:
-    specifier: 0.73.30
-    version: 0.73.30
+    specifier: 0.74.16
+    version: 0.74.16
   standard-version:
     specifier: ^9
     version: 9.5.0
@@ -1454,6 +1457,17 @@ packages:
 
   /comment-json@4.2.2:
     resolution: {integrity: sha512-H8T+kl3nZesZu41zO2oNXIJWojNeK3mHxCLrsBNu6feksBXsgb+PtYz5daP5P86A0F3sz3840KVYehr04enISQ==}
+    engines: {node: '>= 6'}
+    dependencies:
+      array-timsort: 1.0.3
+      core-util-is: 1.0.3
+      esprima: 4.0.1
+      has-own-prop: 2.0.0
+      repeat-string: 1.6.1
+    dev: true
+
+  /comment-json@4.2.3:
+    resolution: {integrity: sha512-SsxdiOf064DWoZLH799Ata6u7iV658A11PlWtZATDlXPpKGJnbJZ5Z24ybixAi+LUUqJ/GKowAejtC5GFUG7Tw==}
     engines: {node: '>= 6'}
     dependencies:
       array-timsort: 1.0.3
@@ -4180,9 +4194,9 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /projen@0.73.30:
-    resolution: {integrity: sha512-9+fpAIuwVaC+u1mQim5J8oStIwykS5wJXO/9KKM+h42XJIVBa0kPhcGn22tGcW23G7yBFaqL91hNoa8aPS6ADA==}
-    engines: {node: '>= 14.0.0'}
+  /projen@0.74.16:
+    resolution: {integrity: sha512-q1ygwtuYeUFZlRPvdveXCqk5VX8KlNULFM/a9w5QxhLhopIFOIHtw8TsAHDu+l2at8AqOxiQB8Q4eCpuLkR9Hw==}
+    engines: {node: '>= 16.0.0'}
     hasBin: true
     dependencies:
       '@iarna/toml': 2.2.5

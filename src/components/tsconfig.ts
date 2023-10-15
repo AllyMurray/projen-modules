@@ -13,7 +13,6 @@ export function defaultTsConfig(): javascript.TypescriptConfigOptions {
       skipLibCheck: true,
       strict: true,
       target: 'ES2022',
-      // @ts-expect-error types is missing from compilerOptions
       // TODO: Update this to allow injecting types
       types: ['vitest/globals'],
     },

@@ -24,6 +24,10 @@
       "type": "build"
     },
     {
+      "name": "comment-json",
+      "type": "build"
+    },
+    {
       "name": "eslint-config-prettier",
       "type": "build"
     },
@@ -67,7 +71,6 @@
     },
     {
       "name": "projen",
-      "version": "0.73.30",
       "type": "build"
     },
     {
@@ -94,7 +97,7 @@
     },
     {
       "name": "projen",
-      "version": "0.73.30",
+      "version": "0.74.16",
       "type": "peer"
     },
     {

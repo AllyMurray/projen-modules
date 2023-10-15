@@ -49,7 +49,7 @@ describe('codeBlock', () => {
 
   it('should throw an error if the input is empty', () => {
     expect(() => codeBlock('')).toThrowErrorMatchingInlineSnapshot(
-      `"Input string cannot be empty"`,
+      `"Input string cannot be empty"`
     );
   });
 });

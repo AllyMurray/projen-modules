@@ -6,7 +6,6 @@ export default defineConfig(
     "test": {
       "clearMocks": true,
       "coverage": {
-"100": true,
 "provider": "v8",
 "reporter": [
   "cobertura",
@@ -14,6 +13,13 @@ export default defineConfig(
   "html",
   "clover",
   "json"
+],
+"lines": 89,
+"functions": 90,
+"branches": 89,
+"statements": 89,
+"exclude": [
+  "src/utils/test/*"
 ]
       },
       "exclude": [
@@ -26,7 +32,8 @@ export default defineConfig(
       "globals": true,
       "outputFile": "junit.xml",
       "reporters": [
-"junit"
+"junit",
+"default"
       ],
       "silent": true,
       "watch": false

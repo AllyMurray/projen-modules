@@ -226,13 +226,13 @@
           "exec": "pnpm update npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/fs-extra,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vitest/coverage-v8,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,fs-extra,glob,npm-check-updates,prettier,standard-version,ts-node,tsup,vitest,ts-command-line-args"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/fs-extra,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vitest/coverage-v8,comment-json,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,fs-extra,glob,npm-check-updates,prettier,projen,standard-version,ts-node,tsup,vitest,ts-command-line-args"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @types/fs-extra @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vitest/coverage-v8 eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint fs-extra glob npm-check-updates prettier standard-version ts-node tsup vitest ts-command-line-args"
+          "exec": "pnpm update @types/fs-extra @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vitest/coverage-v8 comment-json eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint fs-extra glob npm-check-updates prettier projen standard-version ts-node tsup vitest ts-command-line-args"
         },
         {
           "exec": "npx projen"
