@@ -30,11 +30,6 @@ export default defineConfig(
 ".cache"
       ],
       "globals": true,
-      "outputFile": "junit.xml",
-      "reporters": [
-"junit",
-"default"
-      ],
       "silent": true,
       "watch": false
     }

@@ -6,8 +6,6 @@ import { merge } from '../utils/merge.js';
 
 export type VitestOptions = UserConfigExport;
 
-const testReportOutputFileName = 'junit.xml';
-
 export function defaultVitestOptions(): VitestOptions {
   return {
     test: {
@@ -24,8 +22,6 @@ export function defaultVitestOptions(): VitestOptions {
       },
       exclude: ['node_modules', 'dist', '.idea', '.git', '.cache'],
       globals: true,
-      outputFile: testReportOutputFileName,
-      reporters: ['junit', 'default'],
       silent: true,
       watch: false,
     },
@@ -41,7 +37,6 @@ export class Vitest extends Component {
     this.addNpmPackages();
     this.setTestTasks();
     this.project.npmignore?.addPatterns('vitest.config.ts');
-    this.project.gitignore.addPatterns(testReportOutputFileName);
   }
 
   private addNpmPackages() {

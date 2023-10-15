@@ -51,6 +51,5 @@ test-reports
 /lib
 /dist/
 !/.eslintrc.json
-junit.xml
 !/tsup.config.ts
 !/vitest.config.ts

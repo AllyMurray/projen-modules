@@ -537,7 +537,6 @@ test-reports
 /lib
 /dist/
 !/.eslintrc.json
-junit.xml
 !/tsup.config.ts
 !/vitest.config.ts
 ",
@@ -1200,11 +1199,6 @@ export default defineConfig(
 \\".cache\\"
       ],
       \\"globals\\": true,
-      \\"outputFile\\": \\"junit.xml\\",
-      \\"reporters\\": [
-\\"junit\\",
-\\"default\\"
-      ],
       \\"silent\\": true,
       \\"watch\\": false
     }
