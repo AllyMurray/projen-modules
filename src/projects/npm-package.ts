@@ -16,7 +16,7 @@ export interface TypeScriptNpmPackageOptions
 export class TypeScriptNpmPackage extends typescript.TypeScriptProject {
   private static defaultOptions(
     name: string,
-    repository?: string
+    repository?: string,
   ): typescript.TypeScriptProjectOptions {
     return {
       name,
@@ -42,8 +42,8 @@ export class TypeScriptNpmPackage extends typescript.TypeScriptProject {
     super(
       merge(
         TypeScriptNpmPackage.defaultOptions(options.name, options.repository),
-        opts
-      )
+        opts,
+      ),
     );
     new Eslint(this);
     new TsUp(this, options.tsUpOptions ?? {});
@@ -61,7 +61,7 @@ export class TypeScriptNpmPackage extends typescript.TypeScriptProject {
 type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
 export function createTypeScriptNpmPackage(
-  options: Optional<TypeScriptNpmPackageOptions, 'defaultReleaseBranch'>
+  options: Optional<TypeScriptNpmPackageOptions, 'defaultReleaseBranch'>,
 ) {
   return new TypeScriptNpmPackage({
     ...options,

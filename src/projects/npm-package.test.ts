@@ -25,7 +25,7 @@ describe('TypeScriptNpmPackage', () => {
     const output = synthSnapshot(project)['package.json'];
 
     expect(output.repository.url).toBe(
-      'https://github.com/AllyMurray/comic-vine.git'
+      'https://github.com/AllyMurray/comic-vine.git',
     );
   });
 
@@ -40,7 +40,7 @@ describe('TypeScriptNpmPackage', () => {
     const output = synthSnapshot(project)['package.json'];
 
     expect(output.homepage).toBe(
-      'https://github.com/AllyMurray/comic-vine#readme'
+      'https://github.com/AllyMurray/comic-vine#readme',
     );
   });
 
@@ -55,7 +55,7 @@ describe('TypeScriptNpmPackage', () => {
     const output = synthSnapshot(project)['package.json'];
 
     expect(output.bugs.url).toBe(
-      'https://github.com/AllyMurray/comic-vine/issues'
+      'https://github.com/AllyMurray/comic-vine/issues',
     );
   });
 });

@@ -8,7 +8,7 @@ try {
     return fileExtensions.map(async (extension) => {
       const fileContent = await readFile(
         `lib/cli/${script}.${extension}`,
-        'utf8'
+        'utf8',
       );
       const newContent = [
         '#!/usr/bin/env node',

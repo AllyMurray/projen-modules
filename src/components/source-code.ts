@@ -11,7 +11,7 @@ export class SourceCode extends FileBase {
   constructor(
     project: Project,
     filePath: string,
-    private options: SourceCodeOptions
+    private options: SourceCodeOptions,
   ) {
     super(project, filePath, options);
   }

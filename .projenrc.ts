@@ -20,6 +20,7 @@ const project = createTypeScriptNpmPackage({
     entry: ['!src/scripts/**/*'],
     onSuccess: 'ts-node src/scripts/make-scripts-executable.ts',
   },
+  prerelease: 'beta',
 });
 
 project.synth();

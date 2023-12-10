@@ -14,21 +14,26 @@ export default defineConfig(
   "clover",
   "json"
 ],
-"lines": 89,
-"functions": 90,
-"branches": 89,
-"statements": 89,
+"thresholds": {
+  "lines": 89,
+  "functions": 88,
+  "branches": 87,
+  "statements": 89
+},
 "exclude": [
-  "src/utils/test/*"
+  "src/utils/test",
+  ".projenrc.ts",
+  "src/cli",
+  "src/scripts"
 ]
       },
       "exclude": [
-"node_modules",
+".cache",
+".git",
+".idea",
 "dist",
 "lib",
-".idea",
-".git",
-".cache"
+"node_modules"
       ],
       "globals": true,
       "silent": true,

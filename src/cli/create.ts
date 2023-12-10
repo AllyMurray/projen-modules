@@ -22,5 +22,5 @@ writeFileSync(
     `project.synth();`,
   ]
     .toString()
-    .replace(/,/g, '\n')
+    .replace(/,/g, '\n'),
 );
