@@ -22,8 +22,10 @@ export default defineConfig(
 },
 "exclude": [
   ".projenrc.ts",
+  "*.d.ts",
   "examples",
   "lib",
+  "scripts",
   "src/cli",
   "src/scripts",
   "src/utils/test"
