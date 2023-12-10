@@ -24,7 +24,8 @@ export default defineConfig(
   "src/utils/test",
   ".projenrc.ts",
   "src/cli",
-  "src/scripts"
+  "src/scripts",
+  "lib"
 ]
       },
       "exclude": [
