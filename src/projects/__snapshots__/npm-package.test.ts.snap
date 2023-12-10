@@ -211,7 +211,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.0.0
+          node-version: 18.0.0
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
       - name: build
@@ -328,7 +328,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.0.0
+          node-version: 18.0.0
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
       - name: release
@@ -356,7 +356,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: 20.0.0
+          node-version: 18.0.0
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
@@ -381,7 +381,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: 20.0.0
+          node-version: 18.0.0
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
@@ -424,7 +424,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.0.0
+          node-version: 18.0.0
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
       - name: Upgrade dependencies
@@ -621,7 +621,7 @@ save-exact=true
       {
         "name": "@types/node",
         "type": "build",
-        "version": "^20",
+        "version": "^18",
       },
       {
         "name": "@typescript-eslint/eslint-plugin",
@@ -1007,7 +1007,7 @@ SOFTWARE.
       "organization": false,
     },
     "devDependencies": {
-      "@types/node": "^20",
+      "@types/node": "^18",
       "@typescript-eslint/eslint-plugin": "^6",
       "@typescript-eslint/parser": "^6",
       "@vitest/coverage-v8": "*",
@@ -1026,7 +1026,7 @@ SOFTWARE.
       "vitest": "*",
     },
     "engines": {
-      "node": ">= 20.0.0",
+      "node": ">= 18.0.0",
     },
     "exports": {
       ".": {
