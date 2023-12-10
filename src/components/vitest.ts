@@ -22,7 +22,7 @@ export function defaultVitestOptions(): VitestOptions {
         },
         exclude: [
           '.projenrc.ts',
-          '*.d.ts',
+          '**/*.d.ts',
           'examples',
           'lib',
           'scripts',

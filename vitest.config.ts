@@ -22,7 +22,7 @@ export default defineConfig(
 },
 "exclude": [
   ".projenrc.ts",
-  "*.d.ts",
+  "**/*.d.ts",
   "examples",
   "lib",
   "scripts",
