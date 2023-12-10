@@ -1,5 +1,7 @@
 import { typescript } from 'projen';
 
+export const NodeVersion: Readonly<string> = '20.10.0';
+
 export class NpmConfig {
   constructor(project: typescript.TypeScriptProject) {
     project.npmrc.addConfig('fund', 'false');

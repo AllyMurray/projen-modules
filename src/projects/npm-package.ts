@@ -1,6 +1,7 @@
 import { javascript, typescript } from 'projen';
 import { Eslint } from '../components/eslint.js';
-import { NpmConfig } from '../components/npm-config.js';
+import { NpmConfig } from '../components/npm.js';
+import { Nvm } from '../components/nvmrc.js';
 import { Prettier } from '../components/prettier.js';
 import { Projen } from '../components/projen.js';
 import { defaultTsConfig, injectTsNodeConfig } from '../components/tsconfig.js';
@@ -48,6 +49,7 @@ export class TypeScriptNpmPackage extends typescript.TypeScriptProject {
     new Eslint(this);
     new TsUp(this, options.tsUpOptions ?? {});
     new NpmConfig(this);
+    new Nvm(this);
     new Vitest(this);
     this.npmignore?.addPatterns('.projenrc.ts');
   }
