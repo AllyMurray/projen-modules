@@ -4,7 +4,7 @@ import { NpmConfig } from '../components/npm.js';
 import { Nvm } from '../components/nvmrc.js';
 import { Prettier } from '../components/prettier.js';
 import { Projen } from '../components/projen.js';
-import { defaultTsConfig, injectTsNodeConfig } from '../components/tsconfig.js';
+import { defaultTsConfig, useTsNodeEsm } from '../components/tsconfig.js';
 import { TsUp, TsUpOptions, legacyEntryPoints } from '../components/tsup.js';
 import { Vitest, defaultVitestOptions } from '../components/vitest.js';
 import { merge } from '../utils/merge.js';
@@ -51,12 +51,12 @@ export class TypeScriptNpmPackage extends typescript.TypeScriptProject {
     new NpmConfig(this);
     new Nvm(this);
     new Vitest(this);
+    useTsNodeEsm(this);
     this.npmignore?.addPatterns('.projenrc.ts');
   }
 
   postSynthesize(): void {
     super.postSynthesize();
-    injectTsNodeConfig();
   }
 }
 

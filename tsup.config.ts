@@ -20,7 +20,7 @@ export function tsup() {
     "shims": true,
     "sourcemap": true,
     "splitting": false,
-    "onSuccess": "ts-node src/scripts/make-scripts-executable.ts"
+    "onSuccess": "TS_NODE_PROJECT=tsconfig.dev.json node --no-warnings --loader ts-node/esm src/scripts/make-scripts-executable.ts"
   }
   );
 }

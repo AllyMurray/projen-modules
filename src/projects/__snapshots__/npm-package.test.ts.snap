@@ -603,8 +603,8 @@ vitest.config.ts
 
 resolution-mode=highest
 fund=false
-no-bin-links=true
 legacy-peer-deps=true
+no-bin-links=true
 node-linker=hoisted
 save-exact=true
 ",
@@ -815,7 +815,7 @@ save-exact=true
         "name": "default",
         "steps": [
           {
-            "exec": "ts-node --project tsconfig.dev.json .projenrc.ts",
+            "exec": "TS_NODE_PROJECT=tsconfig.dev.json node --no-warnings --loader ts-node/esm .projenrc.ts",
           },
         ],
       },

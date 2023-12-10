@@ -1,4 +1,5 @@
 import { projenDependency } from './src/components/projen.js';
+import { createTsNodeCmd } from './src/components/tsconfig.js';
 import { createTypeScriptNpmPackage } from './src/projects/npm-package.js';
 
 const project = createTypeScriptNpmPackage({
@@ -18,7 +19,7 @@ const project = createTypeScriptNpmPackage({
   bin: { pjc: './lib/cli/create.js', pju: './lib/cli/upgrade.js' },
   tsUpOptions: {
     entry: ['!src/scripts/**/*'],
-    onSuccess: 'ts-node src/scripts/make-scripts-executable.ts',
+    onSuccess: createTsNodeCmd('src/scripts/make-scripts-executable.ts'),
   },
   prerelease: 'beta',
 });
