@@ -21,11 +21,12 @@ export default defineConfig(
   "statements": 89
 },
 "exclude": [
-  "src/utils/test",
   ".projenrc.ts",
+  "examples",
+  "lib",
   "src/cli",
   "src/scripts",
-  "lib"
+  "src/utils/test"
 ]
       },
       "exclude": [
