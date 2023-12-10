@@ -7,7 +7,7 @@ export class Projen {
     defaultReleaseBranch: 'main',
     docgen: false,
     license: 'MIT',
-    minNodeVersion: '18.0.0',
+    minNodeVersion: '20.0.0',
     packageManager: javascript.NodePackageManager.PNPM,
     pnpmVersion: '8',
     projenrcTs: true,
