@@ -33,7 +33,6 @@ jspm_packages/
 .DS_Store
 *yalc*
 test-reports
-!/.projenrc.js
 !/.github/workflows/build.yml
 /dist/changelog.md
 /dist/version.txt
@@ -52,5 +51,6 @@ test-reports
 /dist/
 !/.eslintrc.json
 !/.nvmrc
+!/.projenrc.ts
 !/tsup.config.ts
 !/vitest.config.ts

@@ -50,7 +50,7 @@
     "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
     "prettier": "^3.1.1",
-    "projen": "0.77.5",
+    "projen": "0.79.24",
     "standard-version": "^9",
     "ts-node": "^10.9.2",
     "tsup": "8.0.1",
@@ -58,7 +58,7 @@
     "vitest": "1.0.4"
   },
   "peerDependencies": {
-    "projen": "0.77.5"
+    "projen": "0.79.24"
   },
   "dependencies": {
     "ts-command-line-args": "^2.5.1"

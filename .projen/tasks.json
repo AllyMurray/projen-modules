@@ -108,7 +108,8 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern $@ src test build-tools projenrc .projenrc.ts",
+          "receiveArgs": true
         }
       ]
     },
@@ -138,7 +139,7 @@
           "exec": "mkdir -p dist/js"
         },
         {
-          "exec": "mv $(npm pack) dist/js/"
+          "exec": "mv $(pnpm pack) dist/js/"
         }
       ]
     },
@@ -223,13 +224,13 @@
       },
       "steps": [
         {
-          "exec": "pnpx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/fs-extra,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vitest/coverage-v8,comment-json,constructs,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,fs-extra,glob,prettier,projen,standard-version,ts-node,tsup,vitest,ts-command-line-args"
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/fs-extra,@vitest/coverage-v8,comment-json,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,fs-extra,glob,prettier,projen,ts-node,tsup,typescript,vitest,ts-command-line-args"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @types/fs-extra @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vitest/coverage-v8 comment-json constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint fs-extra glob prettier projen standard-version ts-node tsup vitest ts-command-line-args"
+          "exec": "pnpm update @types/fs-extra @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vitest/coverage-v8 comment-json constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint fs-extra glob prettier projen standard-version ts-node tsup typescript vitest ts-command-line-args"
         },
         {
           "exec": "npx projen"
